@@ -4,13 +4,13 @@
   color: #ffffff;
   margin: 0 auto;
   padding: 0;
-  height: 608px;
+  height: 568px;
 }
 .about__container {
-  max-width: 1280px;
+  max-width: 1140px;
   /* height: 608px; */
-  /* margin: 110px 70px; */
-  padding: 110px 70px;
+  margin: 0 auto;
+  padding: 52px 70px;
   background: #202020;
 }
 .about__text {
@@ -20,7 +20,9 @@
   line-height: 27px;
   letter-spacing: -0.04em;
   text-align: left;
-
+margin: 0;
+padding: 20px 0;
+/* padding-top: 20px; */
   /* height: 27px; */
   /* padding-bottom: 23px; */
   /* margin-top: 110px 0 23px; */
@@ -28,9 +30,9 @@
 .about__diplom {
   display: flex;
   flex-direction: row;
-  column-gap: 40px;
+  column-gap: 52px;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: 0;
   padding: 70px 0;
   border-top: 1px white solid;
 }
@@ -66,7 +68,8 @@
   /* line-height: 17px; */
   letter-spacing: 0em;
   text-align: center;
-
+  margin: 26px 0;
+/* padding-top: 28px; */
   display: grid;
   grid-template-columns: 1fr 4fr;
   grid-template-rows: 36px 36px;
@@ -105,7 +108,7 @@ line-height: 17px;
 letter-spacing: 0px;
 text-align: center;
 color: #8B8B8B;
-line-height: 36px;
+line-height: 48px;
 
 }
 

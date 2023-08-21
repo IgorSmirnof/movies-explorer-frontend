@@ -2,24 +2,32 @@
   color: #ffffff;
   margin: 0 auto;
 
-  padding: 0;
+  padding: 20px 0;
   width: 100%;
   height: 513px;
   background: #202020;
-  display: flex;
+  /* display: flex;
   flex-direction: column;
-  text-align: right;
+  text-align: right; */
+
+  
 }
 .hero__container {
   background: #272727;
-  /* margin: 0 auto; */
-  margin: 20px 40px 0;
+  margin: 0 auto;
+  padding: 0;
+  /* margin: 0 40px; */
   max-width: 1200px;
   height: 493px;
   border-radius: 10px;
   display: flex;
   flex-direction: column;
 }
+/* .hero__wrap{
+  
+  max-width: 1200px;
+  padding: 0 40px;
+} */
 .hero__title {
   font-family: Inter;
   font-size: 50px;
@@ -43,6 +51,7 @@
   display: flex;
   flex-direction: row;
   margin: 0 auto;
+  padding: 0;
   list-style-type: none;
   justify-content: center;
 }

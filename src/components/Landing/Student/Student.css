@@ -12,7 +12,7 @@
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  padding: 70px 0 0;
+  padding: 68px 0 0;
   border-top: 1px white solid;
 }
 .student__about{
@@ -21,10 +21,10 @@
   justify-content: space-between;
 }
 .student__container {
-  max-width: 1280px;
+  max-width: 1140px;
   /* height: 608px; */
-  /* margin: 110px 70px; */
-  padding: 110px 70px;
+  margin: 0 auto;
+  padding: 94px 70px;
 }
 
 .student__text {
@@ -67,7 +67,7 @@ font-weight: 400;
 line-height: 22px;
 letter-spacing: 0px;
 text-align: left;
-padding-top: 28px;
+padding-top: 26px;
 }
 .student__link{
   font-family: Inter;
@@ -78,7 +78,7 @@ letter-spacing: 0em;
 text-align: left;
 text-decoration: none;
 color: #FFFFFF;
-
+max-width: 50px;
 }
 .student__photo{
   width: 270px;
