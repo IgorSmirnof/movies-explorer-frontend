@@ -10,7 +10,7 @@ const Footer = () => {
           Учебный проект Яндекс.Практикум х BeatFilm.
         </div>
 
-        <div className="footer__links-wrap">
+        <div className="footer__links-container footer__link">
           © 2020
           <div className="footer__links">
             <Link

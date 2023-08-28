@@ -1,0 +1,32 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: 0;
+  height: 100vh;
+  margin: 0 auto;
+  align-items: center;
+}
+.form__login {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  width: 396px;
+}
+
+@media (max-width: 400px) {
+  .login {
+    justify-content: start;
+    padding: 0;
+  }
+  .form__login {
+    gap: 0;
+    width: 260px;
+  }
+  .form__block {
+    gap: 9px;
+  }
+  .form__input {
+    height: 46px;
+  }
+}

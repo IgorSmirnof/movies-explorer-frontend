@@ -1,0 +1,77 @@
+.notFound {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.notFound__title {
+  margin: 0;
+  padding-top: 246px;
+
+  font-size: 140px;
+  font-weight: 400;
+  line-height: 169px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.notFound__subtitle {
+  margin: 5px 0 184px;
+
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 19px;
+  letter-spacing: 0em;
+  text-align: center;
+}
+
+.notFound__button {
+  color: #4285f4;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 17px;
+  letter-spacing: 0em;
+  text-align: center;
+  margin-top: auto;
+  padding-bottom: 60px;
+  background-color: transparent;
+  border: none;
+  transition: 0.5s;
+}
+
+.notFound__button:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+@media (max-width: 800px) {
+  .notFound__title {
+    padding-top: 408px;
+  }
+  .notFound__button {
+    padding-bottom: 222px;
+  }
+}
+
+@media (max-width: 400px) {
+  .notFound__title {
+    padding-top: 329px;
+    font-size: 80px;
+    font-weight: 400;
+    line-height: 97px;
+    letter-spacing: 0em;
+  }
+  .notFound__subtitle {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    letter-spacing: 0em;
+    margin-top: 10px;
+  }
+  .notFound__button {
+    font-size: 12px;
+    font-weight: 400;
+    line-height: 15px;
+    padding-bottom: 30px;
+  }
+}

@@ -3,50 +3,6 @@
   width: 100%;
   max-height: 74px;
   background: #202020;
+  position: relative;
 }
 
-.header__container {
-  font-family: Inter;
-  font-size: 13px;
-  font-weight: 400;
-  line-height: 18px;
-  letter-spacing: 0em;
-  text-align: right;
-
-  color: #ffffff;
-  max-width: 1140px;
-  margin: 0 auto;
-  padding: 18px 70px;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-}
-.header__login {
-  color: #ffffff;
-  display: flex;
-  flex-direction: row;
-  gap: 30px;
-  text-align: center;
-}
-.header__link {
-  font-family: Inter;
-  font-size: 12px;
-  font-weight: 500;
-  line-height: 38px;
-  letter-spacing: 0px;
-  /* text-align: right; */
-  text-decoration: none;
-}
-
-.header__reg-link {
-  color: #ffffff;
-}
-
-.header__enter-link {
-  background: #3ddc84;
-  color: #000000;
-  /* margin-left: 30px; */
-  width: 76px;
-  height: 32px;
-  border-radius: 3px;
-}
