@@ -13,7 +13,7 @@ const NavAuth = () => {
   }
 
   return (
-    <>
+    <main>
       {!isOpen ? (
         <div className="button__burger-header">
 
@@ -24,41 +24,41 @@ const NavAuth = () => {
           </Link>
           
           
-          <button className="button__burger" onClick={handleIsOpen}/>
+          <button className="button__burger" type="button" onClick={handleIsOpen}/>
           {/* <button className="button__burger" onClick={handleIsOpen}>&equiv;</button> */}
         </div>
       ) : (
         <div className="button__burger-header">
           <img className="button__burger-image" src={logo} alt="Логотип" />
-          <button className="button__burger-close" onClick={handleIsOpen} />
+          <button className="button__burger-close" type="button" onClick={handleIsOpen} />
         </div>
       )}
 
       <BurgerMenu isOpen={isOpen} />
 
-      <div className="header__container">
-        <div className="header__logo">
+      <ul className="header__container">
+        <li className="header__logo">
           <Link className="header__logo-link" to="/">
             <img src={logo} alt="Логотип" />
           </Link>
-        </div>
+        </li>
 
-        <div className="header__films">
-          <Link className="header__link header__movies-link" to="/movies">
+        <li className="header__films">
+          <Link className="header__link header__movies-link header__movies-link_active" to="/movies">
             Фильмы
           </Link>
           <Link className="header__link header__movies-link" to="/saved-movies">
             Сохранённые фильмы
           </Link>
-        </div>
+        </li>
 
-        <div className="header__login">
+        <li className="header__login">
           <Link className="header__link header__profile" to="/profile">
             Аккаунт
           </Link>
-        </div>
-      </div>
-    </>
+        </li>
+      </ul>
+    </main>
   );
 };
 

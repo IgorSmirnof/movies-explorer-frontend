@@ -6,9 +6,9 @@ import logo from '../../images/logo.svg';
 
 const NavLanding = () => {
   return (
-    <div className='header__land-container'>
+    <nav className='header__land-container'>
         {/* <h3>text header</h3> */}
-        <div className="header__land-logo">
+        <nav className="header__land-logo">
           <Link
             className='header__land-logo-link'
             to="/">
@@ -17,9 +17,9 @@ const NavLanding = () => {
             alt='Логотип'
             />
           </Link>
-        </div>
+        </nav>
         {/* <div className="header__land-films"></div> */}
-        <div className="header__land-login">
+        <nav className="header__land-login">
           <Link
             className='header__land-link header__land-reg-link'
             to="/signup">
@@ -30,8 +30,8 @@ const NavLanding = () => {
             to="/signin">
             Войти
           </Link>
-        </div>
-      </div>
+        </nav>
+      </nav>
   )
 }
   export default NavLanding;

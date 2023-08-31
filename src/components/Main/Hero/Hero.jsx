@@ -12,7 +12,9 @@ const Hero = () => {
         </h1>
         {/* <nav> */}
           <ul className="hero__buttons">
-            <NavTab />
+          <NavTab />
+          
+        
             {/* <li className="hero__buttons_link">О проекте</li>
               <li className="hero__buttons_link">Технологии</li>
               <li className="hero__buttons_link">Студент</li> */}

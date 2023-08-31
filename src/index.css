@@ -6,8 +6,9 @@
 body {
   margin: 0;
   background: #202020;
+  height: 100%;
 }
 
-body::-webkit-scrollbar {
+/* body::-webkit-scrollbar {
   width: 0;
-}
+} */

@@ -8,8 +8,8 @@ const Header = () => {
 const location = useLocation();
   return (
     <header className='header'>
-      {/* {location.pathname === '/' ? < NavAuth/> : < NavLanding/>} */}
-      {location.pathname === '/' ? <NavLanding /> : <NavAuth />}
+      {location.pathname === '/' ? < NavAuth/> : < NavLanding/>}
+      {/* {location.pathname === '/' ? <NavLanding /> : <NavAuth />} */}
     </header>
   );
 };

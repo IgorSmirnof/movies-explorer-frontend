@@ -14,7 +14,7 @@ const Portfolio = () => {
             <li className="portfolio__site">
               <Link
                 className="portfolio__link"
-                to={"https://github.com/"}
+                to={"https://3rutas.com/"}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -26,7 +26,7 @@ const Portfolio = () => {
             <li className="portfolio__site">
               <Link
                 className="portfolio__link"
-                to={"https://github.com/"}
+                to={"https://github.com/IgorSmirnof/russian-travel"}
                 target="_blank"
                 rel="noreferrer"
               >
@@ -38,7 +38,7 @@ const Portfolio = () => {
             <li className="portfolio__site">
               <Link
                 className="portfolio__link"
-                to={"https://github.com/"}
+                to={"https://igorsmirnof.github.io/mesto-react/"}
                 target="_blank"
                 rel="noreferrer"
               >

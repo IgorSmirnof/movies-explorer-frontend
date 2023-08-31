@@ -69,11 +69,13 @@
   .header__land-container {
     max-width: 728px;
     padding: 18px 30px;
+    list-style: none;
     
   }
   .header__land-login {
     font-size: 12px;
     line-height: 16px;
+    list-style: none;
   }
 
 }

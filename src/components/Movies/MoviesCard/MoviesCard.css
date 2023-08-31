@@ -2,11 +2,11 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 18px;
-  padding: 18px 0;
+  gap: 10px;
+  padding: 10px 0;
   border-radius: 6px;
   background: #202020;
-
+/* width: 100%; */
   /* box-shadow: 0px 4px 30px 0px rgba(0, 0, 0, 0.08); */
 }
 button{
@@ -16,6 +16,7 @@ button{
 }
 .movie__container{
   position: relative;
+  width: 100%;
 }
 
 .movie__button {
@@ -32,7 +33,7 @@ button{
   
   opacity: 1;
   /* display:block; */
-  background: url(../../../images/like.svg) center no-repeat;
+  background: url(../../../images/like-round.svg) center no-repeat;
   min-width: 21px;
   height: 21px;
   cursor: pointer;
@@ -57,30 +58,33 @@ button{
   justify-content: space-between;
   align-items: center;
   /* padding: 0 18px; */
-  gap: 14px;
-  width: 100%;
-  
-  height: 18px;
+  gap: 30px;
+  /* width: 100%; */
+  width: 360px;
+  margin: 0;
+  padding: 0;
+  /* height: 18px; */
 }
 
 .movie__name {
   margin: 0;
-  margin-left: 14px;
+  /* margin-left: 14px; */
 
-  width: 100%;
-  font-size: 14px;
+  /* width: 100%; */
+  font-size: 13px;
   font-weight: 500;
   line-height: 18px;
   text-overflow: ellipsis;
-  /* white-space: nowrap; */
+  white-space: nowrap;
   overflow: hidden;
-  /* padding-left: 14px; */
+  text-align: left;
+  padding-left: 14px;
 }
 
 .movie__time {
   margin: 0;
   /* padding-right: 14px; */
-  margin-right: 14px;
+  margin-right: 20px;
 
   color: #8b8b8b;
   font-size: 11px;
@@ -91,7 +95,7 @@ button{
   border-radius: 3px;
   background: #2f2f2f;
   /* height: 18px; */
-  width: 52px;
+  width: 58px;
 }
 
 .movie__image {
@@ -105,31 +109,54 @@ button{
 
 @media (max-width: 800px) {
   .movie {
-    padding: 25px 0;
+    padding: 25px 0 0;
+    gap: 22px;
   }
-
+  
+  
   .movie__image {
     height: 190px;
+  }
+  .movie__name {
+    padding-left: 0px;
+  }
+  .movie__time {
+    margin-right: 0px;
+  }
+  /* .movi */
+  .movie__description {
+    width: 339px;
   }
 }
 
 @media (max-width: 400px) {
   .movie {
     padding: 14px 0;
-    gap: 14px;
+    gap: 12px;
   }
 
   .movie__name {
     font-size: 12px;
-    padding-left: 12px;
+    padding-left: 0;
+    width: auto;
   }
 
   .movie__time {
     font-size: 10px;
-    padding-right: 12px;
+    padding-right: 0;
+    margin-right: 0;
   }
 
   .movie__image {
     height: 168px;
   }
+  .movie__description {
+    gap: 10px;
+    width: 100%;
+    /* width: 360px; */
+    /* margin: 0; */
+    /* padding: 0; */
+    /* height: 18px; */
+  }
+ 
 }

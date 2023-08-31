@@ -1,11 +1,13 @@
 .footer {
-  padding: 84px 70px;
+  flex-shrink: 0;
+  padding: 79px 70px 20px;
   background: #202020;
 }
 
 .footer__title {
   margin: 0;
   font-size: 13px;
+  font-weight: 400;
   color: #8B8B8B;
   text-align: center;
   border-bottom: 1px solid #424242;
@@ -18,12 +20,14 @@
   align-items: flex-end;
   padding-top: 22px;
 }
+.footer__link-block{
+  list-style: none;
 
+}
 .footer__links {
   margin: 0;
   padding: 0;
   display: flex;
-  /* list-style: none; */
   gap: 20px;
 }
 
@@ -45,13 +49,13 @@
 
 @media (max-width: 800px) {
   .footer {
-    padding: 170px 30px 20px;
+    padding: 79px 30px 20px;
   }
 }
 
 @media (max-width: 400px) {
   .footer {
-    padding: 120px 10px 20px;
+    padding: 79px 10px 20px;
   }
 
   .footer__title {

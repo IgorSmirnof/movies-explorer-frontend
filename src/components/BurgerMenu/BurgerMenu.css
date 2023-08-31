@@ -73,6 +73,7 @@
 
 .burger__link:hover{
   border-bottom: 2px solid #fff;
+  opacity: .7;
 }
 
   /* .burger__link-active{
@@ -96,7 +97,9 @@
   background: #313131;
   border-radius:20px;
 }
-
+.burger__profile:hover {
+  opacity: .7;
+}
 @media (max-width: 400px) {
   .burger_active {
     transform: translate(0%);
@@ -104,7 +107,7 @@
 
   .burger__container {
     margin: 0 auto;
-    padding: 147px 0 60px;
+    padding: 147px 0 46px;
 
     display: flex;
     width: 300px;
@@ -112,5 +115,6 @@
 
   .burger__nav {
     width: 300px;
+    gap: 23px;
   }
 }

@@ -22,6 +22,17 @@
   height: 46px;
 }
 
+
+
+@media (max-width: 600px) {
+  .form__register {
+width: 100%;
+  }
+}
+
+
+
+
 @media (max-width: 400px) {
   .register {
 justify-content: start;

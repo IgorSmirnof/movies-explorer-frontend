@@ -7,14 +7,17 @@ import "./SavedMovies.css";
 
 const SavedMovies = ({ textButton }) => {
   return (
-    <>
+    <main>
       <Header />
-      <main className='movies'>
+      <section className='movies'>
         <SearchForm />
         <MoviesCardList textButton={textButton} />
         {/* <button className='movies__button'>Еще</button> */} 
-      </main>
-    </>
+        {/* <div className={location.pathname === '/saved-movies' ? "movies__button-non" : "movies__button-nohay"}>786748654</div> */}
+        <div className="movies__button-non">
+         </div>
+      </section>
+    </main>
 
   );
 };

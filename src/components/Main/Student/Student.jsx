@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 
 const Student = () => {
   return (
-    <section className="student">
+    <section className="student" id={"student"}>
       <div className="student__container">
         <h2 className="student__text">Студент</h2>
         
@@ -24,7 +24,7 @@ const Student = () => {
             </div>
             <Link
                 className="student__link"
-                to={"https://github.com/"}
+                to={"https://github.com/IgorSmirnof"}
                 target="_blank"
                 rel="noreferrer"
               >

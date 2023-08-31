@@ -3,15 +3,15 @@
   justify-content: center;
   /* align-self: center; */
   align-items: center;
-  padding-top: 25px;
-  padding-bottom: 43px;
+  padding-top: 29px;
+  padding-bottom: 40px;
   border-bottom: 1px solid rgba(170, 170, 170, 0.2);
 }
 
 .filter__input {
   margin-right: 14px;
   width: 36px;
-  height: 20px;
+  height: 14px;
   display: inline-block;
   outline: none;
   -webkit-appearance: none;
@@ -19,25 +19,29 @@
   position: relative;
   cursor: pointer;
   background-color: #343434;
+  line-height: 18px;
+  transition: 0.3s ease;
 }
 
 .filter__input::after {
   position: absolute;
   height: 8px;
   width: 8px;
-  top: 6px;
+  top: 3px;
   left: 7px;
   border-radius: 50%;
   content: '';
   background-color: #A0A0A0;
+  transition: 0.3s ease;
 }
 
 .filter__input:checked {
   background-color: #2BE080;
+  transition: 0.3s ease;
 }
 
 .filter__input:checked::after {
-  top: 6px;
+  top: 3px;
   right: 8px;
   position: absolute;
   height: 8px;
@@ -58,15 +62,16 @@
 
 @media (max-width: 800px) {
   .filter {
-    padding-top: 23px;
+    padding-top: 42px;
     border-bottom: 51px;
   }
 }
 
 @media (max-width: 400px) {
   .filter {
-    padding-top: 29px;
+    padding-top: 48px;
     border-bottom: 51px;
+    border-bottom: 1px solid #424242;
   }
 
   .filter__toggle {
