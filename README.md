@@ -1,4 +1,10 @@
-# movies-explorer-frontend
+## Проект размещен GH: [Ссылка на GH](https://github.com/IgorSmirnof/movies-explorer-api)
 
-## Макет: dark-2
-Ссылка на макет: [**Figma dark-2**](https://www.figma.com/file/6FMWkB94wE7KTkcCgUXtnC/light-1?type=design&node-id=891-3857&mode=design&t=2o1n0jVrlmCiWxAF-0)
+
+## Ссылки на проект
+
+IP 158.160.108.139
+
+Frontend https://smirnov.nomoreparties.co
+
+Backend https://api.smirnov.nomoreparties.co
