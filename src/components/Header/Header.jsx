@@ -1,14 +1,14 @@
-import React from 'react';
-import { useLocation } from 'react-router-dom';
-import './Header.css';
-import NavLanding from '../Navigation/NavLanding';
-import NavAuth from '../Navigation/NavAuth';
+import React from "react";
+import { useLocation } from "react-router-dom";
+import "./Header.css";
+import NavLanding from "../Navigation/NavLanding";
+import NavAuth from "../Navigation/NavAuth";
 
 const Header = () => {
-const location = useLocation();
+  const location = useLocation();
   return (
-    <header className='header'>
-      {location.pathname === '/' ? < NavAuth/> : < NavLanding/>}
+    <header className="header">
+      {location.pathname === "/" ? <NavLanding /> : <NavAuth />}
       {/* {location.pathname === '/' ? <NavLanding /> : <NavAuth />} */}
     </header>
   );

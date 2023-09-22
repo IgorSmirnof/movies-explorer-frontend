@@ -1,30 +1,74 @@
 import React from "react";
 import { useState } from "react";
 import "./SearchForm.css";
-// import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
-// import find from '../../images/find-3.svg';
 
-const SearchForm = () => {
-  const [cortoFilm, setCortoFilm] = useState(true);
+const SearchForm = ({
+  handleCheckBoxClick,
+  wordFind = "",
+  handleMoviesSearch,
+  isCheckBoxActive,
+  moviesRender,
+}) => {
+  const [cortoFilm, setCortoFilm] = useState(false);
+  const searchBtn = document.querySelector(".form__search-button");
+  const [textSearch, setTextSearch] = useState(wordFind);
+  const [isSpanActive, setIsSpanActive] = useState(false);
+
+  const handleFormSubmit = (e) => {
+    e.preventDefault();
+    if (textSearch) {
+      handleMoviesSearch(textSearch, isCheckBoxActive);
+    }
+  };
+
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setTextSearch(value);
+    if (value.length !== 0) {
+      setIsSpanActive(false);
+      searchBtn.removeAttribute("disabled", "disabled");
+    } else {
+      setIsSpanActive(true);
+      searchBtn.setAttribute("disabled", "disabled");
+    }
+  };
+
   return (
-    <section className='search__form'>
-      <form className='form__search-wrap'>
-        <section className='form__search'>
+    <section className="search__form">
+      <form
+        className="form__search-wrap"
+        id="form__search-wrap"
+        noValidate
+        onSubmit={handleFormSubmit}
+      >
+        <section className="form__search">
           <input
-            className='form__search-input'
-            name='search'
-            minLength='2'
-            maxLength='40'
-            type='text'
-            placeholder='Фильм'
+            className={`form__search-input ${
+              isSpanActive ? "form__search-input_active" : ""
+            }`}
+            name="search"
+            minLength="2"
+            maxLength="40"
+            type="text"
+            // placeholder='Фильм'
+            placeholder={isSpanActive ? "Нужно ввести ключевое слово" : "Фильм"}
+            onChange={handleChange}
+            value={textSearch}
           />
-          <button
-            className='form__search-button'
-            type='button'
+          {/* <p
+            className={`searchfilm__span ${
+              isSpanActive ? "searchfilm__span_active" : ""
+            }`}
           >
-          </button>
+              Нужно ввести ключевое слово
+          </p> */}
+          <button
+            className="form__search-button"
+            type="submit"
+            form="form__search-wrap"
+          ></button>
         </section>
-    
+
         <section className="filter">
           <input
             type="checkbox"
@@ -34,15 +78,18 @@ const SearchForm = () => {
             onChange={() => {
               setCortoFilm(!cortoFilm);
             }}
+            onClick={handleCheckBoxClick}
           />
           <label htmlFor="checkbox" className="filter__toggle">
             Короткометражки
           </label>
         </section>
-
-
       </form>
-      {/* <FilterCheckbox /> */}
+      {moviesRender.length === 0 ? (
+        <div className="form__search-notfound">Ничего не найдено...</div>
+      ) : (
+        <div></div>
+      )}
     </section>
   );
 };

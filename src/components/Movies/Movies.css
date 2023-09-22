@@ -15,9 +15,13 @@
   font-size: 12px;
   font-weight: 500;
   border: none;
+  margin: 0 auto;
   margin-top: 50px;
   margin-bottom: 80px;
   transition: 0.5s;
+}
+.movies__button_hidden{
+display: none;
 }
 .movies__button-non{
   height: 220px;

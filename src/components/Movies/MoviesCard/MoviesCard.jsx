@@ -1,65 +1,67 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 import { useState } from "react";
 import "./MoviesCard.css";
 
-const MoviesCard = ({ movie, textButton }) => {
-  let [isLiked, setIsLiked] = useState(movie.like);
-  let [isVisibled, setIsVisibled] = useState(false);
+const MoviesCard = ({ movie, textButton, handleClick }) => {
+  const { nameRU, duration, image } = movie;
+  let [isLiked, setIsLiked] = useState(movie.saved);
+  let [isMouseOver, setIsMouseOver] = useState(false);
+  const location = useLocation();
+
+  function setPathImage() {
+    if (location.pathname === "/movies") {
+      return `https://api.nomoreparties.co/${image.url}`;
+    } else {
+      return image;
+    }
+  }
 
   let classButton = null;
-    if (isLiked === true) {
-      classButton = `movie__button movie__button_like`;
+  if (isLiked === true) {
+    classButton = `movie__button movie__button_like`;
   }
-  // console.log('classButton 0', classButton);
 
-  
-
-
-  const handleOverBlock = () => {
+  const handleMouseOver = () => {
     if (!isLiked) {
-      setIsVisibled(true);
+      setIsMouseOver(!isMouseOver);
     }
   };
 
-  const handleOverBlockClear = () => {
-    if (!isLiked) {
-      setIsVisibled(false);
-     }
-  }
-  const handleClickDislike = () => {
+  const handleClickLike = () => {
     setIsLiked(!isLiked);
+    handleClick(movie);
+    console.log(movie, isLiked);
   };
 
-  if (!isLiked && isVisibled) {
-  classButton = `movie__button movie__button_save`;
-   }
-  
+  if (!isLiked && isMouseOver) {
+    classButton = `movie__button movie__button_save`;
+  }
 
+  function timeConvert(duration) {
+    const hours = duration / 60;
+    const realHours = Math.floor(hours);
+    const minutes = (hours - realHours) * 60;
+    const realMinutes = Math.round(minutes);
+    return realHours + "ч " + realMinutes + "м";
+  }
 
   return (
     <li className="movie">
-      <div className="movie__container">
-        <img
-          className="movie__image"
-          src={movie.image}
-          alt={movie.name}
-          onMouseEnter={handleOverBlock}
-          onMouseLeave={handleOverBlockClear}
-          // onMouseOver={handleOverLike}
-          // onMouseOut={handleOverLike}
-        />
+      <div
+        className="movie__container"
+        onMouseEnter={handleMouseOver}
+        onMouseLeave={handleMouseOver}
+      >
+        <img className="movie__image" src={setPathImage()} alt={nameRU} />
 
-        <button
-          className={classButton}
-          onClick={handleClickDislike}
-          type="button"
-        >
-          {isVisibled ? textButton : null}
+        <button className={classButton} type="button" onClick={handleClickLike}>
+          {isMouseOver && !isLiked ? textButton : null}
         </button>
       </div>
       <div className="movie__description">
-        <h2 className="movie__name">{movie.name}</h2>
-        <p className="movie__time">{movie.time}</p>
+        <h2 className="movie__name">{nameRU}</h2>
+        <p className="movie__time">{timeConvert(duration)}</p>
       </div>
     </li>
   );

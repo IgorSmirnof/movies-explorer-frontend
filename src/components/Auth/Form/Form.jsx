@@ -3,9 +3,9 @@ import "./Form.css";
 import { Link } from "react-router-dom";
 import logo from "../../../images/logo.svg";
 
-const Form = ({ title, linkText, link, linkName, buttonName, children }) => {
+const Form = ({ title, linkText, link, linkName, buttonName, children, onSubmit,  isValid }) => {
   return (
-    <form className="form">
+    <form className="form" onSubmit={onSubmit}>
 
       <div className="form__main">
         <Link className="form__link-logo" to={"/"}>
@@ -16,7 +16,10 @@ const Form = ({ title, linkText, link, linkName, buttonName, children }) => {
       </div>
 
       <div className="form__footer">
-        <button className="form__button" type="submit">
+        <button
+          className={`form__button ${!isValid && 'form__button_disabled'}`}
+          type="submit" 
+          disabled={!isValid}>
           {buttonName}
         </button>
         <span className="form__text">

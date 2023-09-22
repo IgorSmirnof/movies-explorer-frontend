@@ -4,7 +4,7 @@ function checkResponse(res) {
       return res.json();
     }
     return Promise.reject(
-      `Пердоньте Монсеньёр: есть Ошибка: ${res.status}`
+      `Ошибка: ${res.status}`
   );
 }
 
