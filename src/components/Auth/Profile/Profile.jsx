@@ -13,9 +13,10 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
     useFormValidate();
 
   const currentUser = useContext(CurrentUserContext);
+  // console.log(currentUser.data.name)
 
   useEffect(() => {
-    setValues({ name: currentUser.name, email: currentUser.email });
+    setValues({ name: currentUser.data.name, email: currentUser.data.email });
   }, [currentUser, setValues]);
 
   const handleSubmit = (e) => {
