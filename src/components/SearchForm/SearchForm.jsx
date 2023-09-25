@@ -18,12 +18,15 @@ const SearchForm = ({
     e.preventDefault();
     if (textSearch) {
       handleMoviesSearch(textSearch, isCheckBoxActive);
+    } else {
     }
   };
 
   const handleChange = (e) => {
     const value = e.target.value;
     setTextSearch(value);
+    localStorage.setItem("wordFind", value);
+
     if (value.length !== 0) {
       setIsSpanActive(false);
       searchBtn.removeAttribute("disabled", "disabled");
@@ -47,7 +50,7 @@ const SearchForm = ({
               isSpanActive ? "form__search-input_active" : ""
             }`}
             name="search"
-            minLength="2"
+            // minLength="2"
             maxLength="40"
             type="text"
             // placeholder='Фильм'

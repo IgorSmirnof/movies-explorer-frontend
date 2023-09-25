@@ -1,5 +1,6 @@
 import { React, useState, useEffect } from "react";
 import { Route, Routes, useLocation, useNavigate } from "react-router-dom";
+import ProtectedRoute from "../ProtectedRoute/ProtectedRoute";
 import "./App.css";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import Main from "../Main/Main";
@@ -29,8 +30,8 @@ function App() {
   const { pathname } = useLocation();
   const [currentUser, setCurrentUser] = useState({});
   const [isLoading, setIsLoading] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(true);
-  const [savedMovies, setSavedMovies] = useState([]);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  let [savedMovies, setSavedMovies] = useState([]);
   const [isProfileSaved, setIsProfileSaved] = useState(false);
 
   // регистрация
@@ -58,6 +59,15 @@ function App() {
       .catch((err) => console.log(err));
   };
 
+  const getMoviesLocalStore = () => {
+    let allMoviesLocalStore = JSON.parse(localStorage.getItem("allMovies"));
+    if (!allMoviesLocalStore) {
+      return (allMoviesLocalStore = []);
+    }
+    return allMoviesLocalStore;
+  };
+  let [allMovies, setAllMovies] = useState(getMoviesLocalStore());
+
   // Получение данных о текущем пользователе сохр.филмах и список фильмов из api
 
   useEffect(() => {
@@ -66,7 +76,17 @@ function App() {
         .then(([profile, savedMovies, movies]) => {
           setCurrentUser(profile);
           setSavedMovies(savedMovies);
+          // console.log('savedMovies', savedMovies)
+          movies.map((el) => {
+            if (savedMovies.some((item) => item.movieId === el.id)) {
+              // console.log('true')
+              return (el.saved = true);
+            } else {
+              return (el.saved = false);
+            }
+          });
           setAllMovies(movies);
+
           localStorage.setItem("allMovies", JSON.stringify(movies));
           localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
         })
@@ -117,27 +137,21 @@ function App() {
     }
   }
 
-  const getMoviesLocalStore = () => {
-    let allMoviesLocalStore = JSON.parse(localStorage.getItem("allMovies"));
-    if (!allMoviesLocalStore) {
-      return (allMoviesLocalStore = []);
-    }
-    return allMoviesLocalStore;
-  };
-  const [allMovies, setAllMovies] = useState(getMoviesLocalStore());
-
-  const handleSaveMovie = (movie) => {
+   const handleSaveMovie = (movie) => {
     saveMovie(movie)
       .then((res) => {
-        setSavedMovies([...savedMovies, res.data]);
+        savedMovies = [...savedMovies, res];
+        setSavedMovies(savedMovies);
         localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
+        allMovies = allMovies.map((movie) =>
+          movie.id === res.movieId ? (movie = { ...movie, saved: true }) : movie
+        );
+        localStorage.setItem("allMovies", JSON.stringify(allMovies));
       })
       .catch((err) => console.log(err));
-    // }
   };
 
   function handleMovieDelete(movie) {
-    console.log(movie._id);
     deleteMovie(movie._id)
       .then(() => {
         const newSavedMovies = savedMovies.filter(
@@ -145,6 +159,14 @@ function App() {
         );
         setSavedMovies(newSavedMovies);
         localStorage.setItem("savedMovies", JSON.stringify(newSavedMovies));
+
+        const updatedAllMovies = allMovies.map(
+          // (el) => el.id === movie.movieId ? (console.log('true' , el.id, movie.movieId)) : console.log('false' , el.id, movie.movieId)
+          (el) =>
+            el.id === movie.movieId ? (el = { ...el, saved: false }) : el
+        );
+        setAllMovies(updatedAllMovies);
+        localStorage.setItem("allMovies", JSON.stringify(updatedAllMovies));
       })
       .catch((err) => {
         console.log(err);
@@ -163,32 +185,39 @@ function App() {
             <Route
               path="/movies"
               element={
-                <Movies
-                  textButton="Сохранить"
-                  allMovies={allMovies}
-                  isLoading={isLoading}
-                  handleSaveMovie={handleSaveMovie}
-                  handleMovieDelete={handleMovieDelete}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Movies
+                    textButton="Сохранить"
+                    allMovies={allMovies}
+                    savedMovies={savedMovies}
+                    isLoading={isLoading}
+                    handleSaveMovie={handleSaveMovie}
+                    handleMovieDelete={handleMovieDelete}
+                  />
+                </ProtectedRoute>
               }
             />
             <Route
               path="/saved-movies"
               element={
-                <SavedMovies
-                  savedMovies={savedMovies}
-                  handleMovieDelete={handleMovieDelete}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <SavedMovies
+                    savedMovies={savedMovies}
+                    handleMovieDelete={handleMovieDelete}
+                  />
+                </ProtectedRoute>
               }
             />
             <Route
               path="/profile"
               element={
-                <Profile
-                  handleLogOut={handleLogOut}
-                  handleUsersUpdate={handleUsersUpdate}
-                  isProfileSaved={isProfileSaved}
-                />
+                <ProtectedRoute isLoggedIn={isLoggedIn}>
+                  <Profile
+                    handleLogOut={handleLogOut}
+                    handleUsersUpdate={handleUsersUpdate}
+                    isProfileSaved={isProfileSaved}
+                  />
+                </ProtectedRoute>
               }
             />
             <Route

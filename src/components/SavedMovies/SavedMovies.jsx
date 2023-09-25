@@ -27,6 +27,7 @@ const SavedMovies = ({ textButton, savedMovies, handleMovieDelete }) => {
 
   useEffect(() => {
     setMoviesRender(checkFindMovies(savedMovies, wordFind, isCheckBoxActive));
+    // console.log('setMoviesRender', savedMovies)
   }, [isCheckBoxActive, wordFind, savedMovies]);
 
   useEffect(() => {
@@ -60,14 +61,17 @@ function checkFindMovies(movies, wordFind, isCheckBoxActive) {
   let checkededMovies = movies;
 
   if (wordFind !== "") {
-    checkededMovies = checkededMovies.filter((item) =>
-      item.nameRU.toLowerCase().includes(wordFind.toLowerCase())
+    checkededMovies = checkededMovies.filter((movie) =>
+      movie.nameRU.toLowerCase().includes(wordFind.toLowerCase())
     );
+  } else {
+    checkededMovies = movies;
   }
 
   if (isCheckBoxActive) {
-    checkededMovies = checkededMovies.filter((item) => item.duration <= 40); //короткометраж
+    checkededMovies = checkededMovies.filter((movie) => movie.duration <= 40); //короткометраж
   }
+
   return checkededMovies;
 }
 

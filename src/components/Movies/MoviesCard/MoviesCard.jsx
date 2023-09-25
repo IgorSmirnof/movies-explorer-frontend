@@ -4,13 +4,14 @@ import { useState } from "react";
 import "./MoviesCard.css";
 
 const MoviesCard = ({ movie, textButton, handleClick }) => {
-  const { nameRU, duration, image } = movie;
-  let [isLiked, setIsLiked] = useState(movie.saved);
+  const { nameRU, duration, image, saved } = movie;
+  let [isLiked, setIsLiked] = useState(saved);
   let [isMouseOver, setIsMouseOver] = useState(false);
   const location = useLocation();
 
   function setPathImage() {
     if (location.pathname === "/movies") {
+      // console.log(image)
       return `https://api.nomoreparties.co/${image.url}`;
     } else {
       return image;
@@ -30,8 +31,9 @@ const MoviesCard = ({ movie, textButton, handleClick }) => {
 
   const handleClickLike = () => {
     setIsLiked(!isLiked);
-    handleClick(movie);
-    console.log(movie, isLiked);
+    handleClick(movie, isLiked);
+    setIsMouseOver(isMouseOver);
+    console.log("handleClickLike", isLiked);
   };
 
   if (!isLiked && isMouseOver) {

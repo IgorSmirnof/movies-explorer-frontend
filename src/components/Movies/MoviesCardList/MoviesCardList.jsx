@@ -10,7 +10,6 @@ const MoviesCardList = ({ textButton, moviesRender, handleClick }) => {
   const [moviesToPage, setMoviesToPage] = useState(moviesRender);
   const [isBtnHidden, setIsBtnHidden] = useState(false);
 
-  // console.log("moviesRender:", moviesRender);
 
   const checkWidth = () => {
     const screenWidth = window.innerWidth;
@@ -50,7 +49,7 @@ const MoviesCardList = ({ textButton, moviesRender, handleClick }) => {
     }
     setMoviesToPage(moviesRender.slice(0, moviesPerPage));
   }, [moviesRender, moviesPerPage]);
-
+  
   return (
     <section className="movies__container">
       {location.pathname === "/movies" && (
@@ -71,14 +70,14 @@ const MoviesCardList = ({ textButton, moviesRender, handleClick }) => {
       {location.pathname === "/saved-movies" && (
         <>
           <ul className="movies__list">
-            {moviesToPage.map((movie) => (
+            {moviesToPage.map((movie) =>
               <MoviesCard
                 key={movie._id}
                 movie={movie}
                 textButton={textButton}
                 handleClick={handleClick}
               />
-            ))}
+            )}
           </ul>
         </>
       )}
