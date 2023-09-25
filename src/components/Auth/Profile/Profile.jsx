@@ -79,15 +79,16 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
                 </span>
               </div>
             </form>
-          </section>
-
-          {isProfileSaved ? (
+            {isProfileSaved ? (
             <div className="profile__success">
               Ваш профиль успешно обновлен!
             </div>
           ) : (
             ""
           )}
+          </section>
+
+          
 
           <div className="profile__buttons">
             <button

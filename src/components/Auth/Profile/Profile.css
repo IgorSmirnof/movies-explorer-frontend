@@ -113,6 +113,7 @@
 .profile__success{
   margin: 0 auto;
   margin-top: 70px;
+  text-align: center;
 }
 
 @media (max-width: 800px) {
