@@ -7,7 +7,7 @@
 [**Pull request**](https://github.com/IgorSmirnof/movies-explorer-frontend/pull/5)
 
 ## Ссылка на деплой
-[**link**](https://smirnov.nomoreparties.co/)
+[**link на деплой**](https://smirnov.nomoreparties.co/)
 
 ### IP yandex cloud
 84.252.130.140
