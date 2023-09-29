@@ -1,4 +1,5 @@
 import { EMAIL_REXP, NAME_REXP } from "./constants";
+// import { VALIDATION } from "./constants";
 
 export const validateName = (name) => {
   if (name === undefined) {

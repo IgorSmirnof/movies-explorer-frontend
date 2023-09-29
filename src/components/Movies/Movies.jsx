@@ -4,9 +4,40 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "./MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import "./Movies.css";
+// import {
+//   getUserInfoApi,
+//   setToken
+// } from "../../utils/MainApi";
 // import {  deleteMovie} from "../../utils/MainApi";
 
-const Movies = ({ textButton, isLoading, allMovies, savedMovies, handleSaveMovie, handleMovieDelete }) => {
+const Movies = ({
+  textButton,
+  isLoading,
+  allMovies,
+  savedMovies,
+  handleSaveMovie,
+  handleMovieDelete,
+  setIsLoggedIn,
+  getAllMovies
+}) => {
+  // useEffect(() => {
+  //   getAllMovies()
+  // }, []);
+
+  //для повторного входа
+  // useEffect(() => {
+  //   const token = localStorage.getItem("jwt");
+  //   if (token) {
+  //     // getUserInfoApi(token)
+  //     //   .then((res) => {
+  //         setIsLoggedIn(true);
+  //     //     setToken(token);
+  //     //   })
+  //     //   .catch((err) => {
+  //     //     console.log(err);
+  //     //   });
+  //   }
+  // }, []);
 
   // изв из ЛС статус кмф
   const checkBoxStatus = () => {
@@ -38,38 +69,36 @@ const Movies = ({ textButton, isLoading, allMovies, savedMovies, handleSaveMovie
     localStorage.setItem("checkBox", isCheckBoxActive);
   }, [isCheckBoxActive]);
 
-
   useEffect(() => {
-    const srch = checkFindMovies(allMovies, wordFind, isCheckBoxActive)
+    const srch = checkFindMovies(allMovies, wordFind, isCheckBoxActive);
     setMoviesRender(srch);
   }, [isCheckBoxActive, wordFind, allMovies, savedMovies]);
 
-
   useEffect(() => {
-    const srch = checkFindMovies(allMovies, wordFind, isCheckBoxActive)
+    const srch = checkFindMovies(allMovies, wordFind, isCheckBoxActive);
     setMoviesRender(srch);
     //eslint-disable-next-line
   }, []);
 
   const handleClickSave = (data, isLiked) => {
+    console.log("handleClickSave isLiked:", isLiked);
     if (!isLiked) {
       handleSaveMovie(data);
-    }
-    else {
+    } else {
       allMovies[data.id - 1].saved = false;
       localStorage.setItem("allMovies", JSON.stringify(allMovies));
       savedMovies = savedMovies.map((element, index, array) => {
         if (element.movieId === data.id) {
           // console.log(element._id, data.id);
           // deleteMovie(element._id)
-          handleMovieDelete(element)
+          handleMovieDelete(element);
         }
         return array;
-      })
+      });
     }
   };
 
-
+  // console.log("handleClickSave allMovies:", allMovies);
   return (
     <main>
       <Header />

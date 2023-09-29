@@ -4,13 +4,18 @@ import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
 
 const Login = ({ handleAuthorize }) => {
-  const { values, isValid, errors, handleChange } = useFormValidate();
+    const { values, isValid, errors, handleChange } = useFormValidate();
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    handleAuthorize(values);
+    try {
+      await handleAuthorize(values);
+    }
+    catch (err) {
+      console.log(err)
+    }
+    
   }
-
 
   return (
     <main>
@@ -66,6 +71,7 @@ const Login = ({ handleAuthorize }) => {
                 required
                 minLength="6"
                 maxLength="40"
+                autoComplete='off'
               />
               <span
                 className={`form__error ${

@@ -4,14 +4,14 @@ import { useState } from "react";
 import "./MoviesCard.css";
 
 const MoviesCard = ({ movie, textButton, handleClick }) => {
-  const { nameRU, duration, image, saved } = movie;
-  let [isLiked, setIsLiked] = useState(saved);
+  const { nameRU, duration, image } = movie;
+
+  let isLiked = movie.saved;
   let [isMouseOver, setIsMouseOver] = useState(false);
   const location = useLocation();
 
   function setPathImage() {
     if (location.pathname === "/movies") {
-      // console.log(image)
       return `https://api.nomoreparties.co/${image.url}`;
     } else {
       return image;
@@ -23,22 +23,26 @@ const MoviesCard = ({ movie, textButton, handleClick }) => {
     classButton = `movie__button movie__button_like`;
   }
 
-  const handleMouseOver = () => {
-    if (!isLiked) {
-      setIsMouseOver(!isMouseOver);
-    }
-  };
-
-  const handleClickLike = () => {
-    setIsLiked(!isLiked);
-    handleClick(movie, isLiked);
-    setIsMouseOver(isMouseOver);
-    console.log("handleClickLike", isLiked);
-  };
-
+  // useEffect(() => {
   if (!isLiked && isMouseOver) {
     classButton = `movie__button movie__button_save`;
   }
+  //     else if (!isLiked && !isMouseOver) {
+  //     classButton = `movie__button`;
+  //   }
+  // },[setIsMouseOver])
+
+  const handleMouseOver = () => {
+    // if (!isLiked) {
+    setIsMouseOver(!isMouseOver);
+    // }
+  };
+
+  const handleClickLike = () => {
+    // setIsLiked(!isLiked);
+    handleClick(movie, isLiked);
+    setIsMouseOver(isMouseOver);
+  };
 
   function timeConvert(duration) {
     const hours = duration / 60;

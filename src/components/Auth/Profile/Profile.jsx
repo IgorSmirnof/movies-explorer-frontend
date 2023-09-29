@@ -9,14 +9,14 @@ import { useFormValidate } from "../../../hooks/useFormValidate";
 import { validateName, validateEmail } from "../../../utils/validateCustom";
 
 const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
+  const currentUser = useContext(CurrentUserContext);
   const { values, setValues, handleChange, isValid, errors } =
     useFormValidate();
 
-  const currentUser = useContext(CurrentUserContext);
-  // console.log(currentUser.data.name)
+  // console.log("Profile currentUser", currentUser)
 
   useEffect(() => {
-    setValues({ name: currentUser.data.name, email: currentUser.data.email });
+    setValues({ name: currentUser.name, email: currentUser.email });
   }, [currentUser, setValues]);
 
   const handleSubmit = (e) => {
@@ -32,11 +32,11 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
           <section className="profile__box">
             <h1 className="profile__title">Привет, {values.name}!</h1>
             <form
-              className="profile__form"
+              className="profile__form profile__element"
               id="profile__form"
               onSubmit={handleSubmit}
             >
-              <div className="profile__element">
+              {/* <div className="profile__element"> */}
                 <label className="profile__label">
                   <p className="profile__name">Имя</p>
                   <input
@@ -52,11 +52,13 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
                 </label>
                 <span
                   className={`form__error ${
-                    (errors.name || validateName(values.name).invalid) &&
+                    // (errors.name || validateName(values.name).invalid) &&
+                    (errors.name) &&
                     "form__error_register"
                   }`}
                 >
-                  {errors.name || validateName(values.name).message}
+                  {/* {errors.name || validateName(values.name).message} */}
+                  {errors.name}
                 </span>
 
                 <label className="profile__label">
@@ -72,13 +74,15 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
                 </label>
                 <span
                   className={`form__error ${
-                    (errors.email || validateEmail(values.email).invalid) &&
+                    // (errors.email || validateEmail(values.email).invalid) &&
+                    (errors.email) &&
                     "form__error_register"
                   }`}
                 >
                   {errors.email || validateEmail(values.email).message}
+                  {errors.email}
                 </span>
-              </div>
+              {/* </div> */}
             </form>
             {isProfileSaved ? (
             <div className="profile__success">

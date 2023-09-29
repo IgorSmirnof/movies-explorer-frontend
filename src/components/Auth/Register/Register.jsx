@@ -2,16 +2,23 @@ import React from "react";
 import "./Register.css";
 import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
+import { VALIDATION } from "../../../utils/constants"
 
 const Register = ({ handleRegister }) => {
-  const { values, isValid, errors, handleChange } = useFormValidate();
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+  };
+  const { values, isValid, errors, handleChange } = useFormValidate(initialValues);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegister(values);
     // console.log(values, errors);
   };
-
+  
+// const EMAIL_REXP = "[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\\.[a-z]{2,}";
   return (
     <main>
       <section className="register">
@@ -35,9 +42,10 @@ const Register = ({ handleRegister }) => {
                 name="name"
                 type="text"
                 placeholder="Введите имя"
-                value={values.name}
+                value={values.name || ''}
                 onChange={handleChange}
                 required
+                pattern={VALIDATION.name.pattern}
                 minLength="2"
                 maxLength="40"
               />
@@ -58,11 +66,12 @@ const Register = ({ handleRegister }) => {
                 className="form__input"
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 placeholder="Введите e-mail"
-                value={values.email || ""}
+                value={values.email || ''}
                 onChange={handleChange}
                 required
+                pattern={VALIDATION.email.pattern}
               />
               <span
                 className={`form__error ${
@@ -83,11 +92,12 @@ const Register = ({ handleRegister }) => {
                 name="password"
                 type="password"
                 placeholder="Введите пароль"
-                value={values.password}
+                value={values.password || ''}
                 onChange={handleChange}
                 required
                 minLength="6"
                 maxLength="40"
+                autoComplete='off'
               />
               <span
                 className={`form__error ${

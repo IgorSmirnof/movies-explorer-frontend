@@ -50,6 +50,10 @@ const MoviesCardList = ({ textButton, moviesRender, handleClick }) => {
     setMoviesToPage(moviesRender.slice(0, moviesPerPage));
   }, [moviesRender, moviesPerPage]);
   
+  useEffect(() => {
+    // console.log('handleClick in cardList')
+  }, [handleClick]);
+
   return (
     <section className="movies__container">
       {location.pathname === "/movies" && (

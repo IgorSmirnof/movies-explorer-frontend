@@ -1,27 +1,24 @@
 import { API_MY_URL } from "./constants";
 import checkResponse from "./checkResponse";
 
-export function getUserInfoApi() {
+export function getUserInfoApi(token) {
   return fetch(`${API_MY_URL}/users/me`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 }
 
-export function setUserInfoApi(data) {
+export function setUserInfoApi({ name, email }, token) {
   return fetch(`${API_MY_URL}/users/me`, {
     method: "PATCH",
     headers: {
       "Content-Type": "application/json",
-      authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      authorization: `Bearer ${token}`,
     },
-    body: JSON.stringify({
-      name: data.name,
-      email: data.email,
-    }),
+    body: JSON.stringify({ name, email }),
   }).then(checkResponse);
 }
 
@@ -36,18 +33,25 @@ export function register({ name, email, password }) {
   }).then(checkResponse);
 }
 
-export function authorize({ email, password }) {
+export const authorize = ({ email, password }) => {
   return fetch(`${API_MY_URL}/signin`, {
     method: "POST",
-    credentials: "include",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({ password, email }),
-  }).then(checkResponse);
-}
+    credentials: "include",
+  })
+    .then(checkResponse)
+    .then((data) => {
+      if (data.token) {
+        localStorage.setItem("jwt", data.token);
+        return data;
+      }
+    });
+};
 
-export function checkToken(token) {
+export function getContent(token) {
   return fetch(`${API_MY_URL}/users/me`, {
     method: "GET",
     headers: {
@@ -83,32 +87,22 @@ export function saveMovie(movie) {
   }).then(checkResponse);
 }
 
-export function getSaveMovie() {
+export function getSaveMovie(token) {
   return fetch(`${API_MY_URL}/movies`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
 }
 
-export function deleteMovie(movieId) {
+export function deleteMovie(movieId, token) {
   return fetch(`${API_MY_URL}/movies/${movieId}`, {
     method: "DELETE",
     headers: {
       "Content-Type": "application/json",
-      Authorization: `Bearer ${localStorage.getItem("jwt")}`,
+      Authorization: `Bearer ${token}`,
     },
   }).then(checkResponse);
-}
-
-export function logOut() {
-  return fetch(`${API_MY_URL}/signout`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    credentials: "include",
-  });
 }
