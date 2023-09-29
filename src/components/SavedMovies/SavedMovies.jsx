@@ -16,7 +16,7 @@ const SavedMovies = ({ textButton, savedMovies, handleMovieDelete }) => {
     console.log(isCheckBoxActive);
   };
 
-  // Обработка запроса на поиск фильма
+  // запрос на поиск фильма
   const handleMoviesSearch = (text) => {
     setWordFind(text);
   };

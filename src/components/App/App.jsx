@@ -34,14 +34,14 @@ function App() {
   let [allMovies, setAllMovies] = useState([]);
   const token = localStorage.getItem("jwt");
 
-  // логинимся
+  // логин, получаем токен
   useEffect(() => {
     if (token) {
       setIsLoggedIn(true);
     }
   }, [token, isLoggedIn]);
 
-  // сохраняем в контекст пользователя
+  // сохр в контекст юзера
   useEffect(() => {
     if (isLoggedIn) {
       getUserInfoApi(token)
@@ -108,15 +108,14 @@ function App() {
   const handleUsersUpdate = (userData) => {
     setIsLoading(true);
     setUserInfoApi(userData, token)
-      .then((userDataUpdated) => {
+      .then((profile) => {
         setCurrentUser({
-          name: userDataUpdated.name,
-          email: userDataUpdated.email,
+          name: profile.name,
+          email: profile.email,
         });
         setIsProfileSaved(true);
       })
       .catch((e) => setIsProfileSaved(false))
-      // .catch((e) => console.log(e.message, "fail"))
       .finally(() => setIsLoading(false));
   };
 
@@ -143,7 +142,7 @@ function App() {
     if (!isSavedMovie) {
       saveMovie(movie)
         .then((res) => {
-          console.log(res);
+          // console.log(res);
           savedMovies = [...savedMovies, res];
           setSavedMovies(savedMovies);
           localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
