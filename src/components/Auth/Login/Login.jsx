@@ -4,7 +4,7 @@ import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
 import { VALIDATION } from "../../../utils/constants"
 
-const Login = ({ handleAuthorize }) => {
+const Login = ({ handleAuthorize, isSubmitting }) => {
   const initialValues = {
     name: '',
     email: '',
@@ -12,15 +12,19 @@ const Login = ({ handleAuthorize }) => {
   };
   const { values, isValid, errors, handleChange } = useFormValidate(initialValues);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      await handleAuthorize(values);
-    }
-    catch (err) {
-      console.log(err)
-    }
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   try {
+  //     await handleAuthorize(values);
+  //   }
+  //   catch (err) {
+  //     console.log(err)
+  //   }
     
+  // }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    handleAuthorize(values);
   }
 
   return (
@@ -34,6 +38,7 @@ const Login = ({ handleAuthorize }) => {
           buttonName="Войти"
           onSubmit={handleSubmit}
           isValid={isValid}
+          isSubmitting={isSubmitting}
         >
           {/* <div className="form__box"> */}
           <section className="form__login">

@@ -31,7 +31,7 @@ const Movies = ({
   // изв из ЛС фильтрованные фильмы
   const checkCheckededMovies = () => {
     const checkededMovies = JSON.parse(localStorage.getItem("checkededMovies"));
-    console.log(checkededMovies)
+    // console.log(checkededMovies)
     return checkededMovies ? checkededMovies : [];
   };
 
@@ -143,7 +143,7 @@ function checkFindMovies(movies, wordFind, isCheckBoxActive) {
     localStorage.setItem("checkededMovies", JSON.stringify(checkededMovies));
   } else {
     // localStorage.setItem("checkededMovies", JSON.stringify(''));
-    console.log('localStorage.setItem --- ', wordFind);
+    // console.log('localStorage.setItem --- ', wordFind);
   }
   return checkededMovies;
 }

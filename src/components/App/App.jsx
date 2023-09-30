@@ -33,6 +33,7 @@ function App() {
   const [isProfileSaved, setIsProfileSaved] = useState(false);
   let [allMovies, setAllMovies] = useState([]);
   const token = localStorage.getItem("jwt");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   // логин, получаем токен
   useEffect(() => {
@@ -52,21 +53,22 @@ function App() {
     }
   }, [isLoggedIn, token]);
 
-
   useEffect(() => {
     if (isLoggedIn) {
       Promise.all([getSaveMovie(token), getMovies()])
-        .then(([savedMovies, movies]) => {
+        .then(
+        ([savedMovies, movies]) => {
           setSavedMovies(savedMovies);
           setAllMovies(movies);
           localStorage.setItem("savedMovies", JSON.stringify(savedMovies));
           localStorage.setItem("allMovies", JSON.stringify(movies));
-        })
+        }
+      )
+      .catch((e) => console.log(e));
     }
-  },[isLoggedIn, token])
+  }, [isLoggedIn, token]);
 
-
-  useEffect(() => { 
+  useEffect(() => {
     allMovies.map((el) => {
       if (savedMovies.some((item) => item.movieId === el.id)) {
         return (el.saved = true);
@@ -76,11 +78,11 @@ function App() {
     });
     setAllMovies(allMovies);
     localStorage.setItem("allMovies", JSON.stringify(allMovies));
-  },[savedMovies, allMovies])
-
+  }, [savedMovies, allMovies]);
 
   const handleRegister = (data) => {
     setIsLoading(true);
+    setIsSubmitting(false)
     register(data)
       .then((res) => {
         if (res.name || res.email) {
@@ -88,26 +90,34 @@ function App() {
         }
       })
       .catch((e) => console.log(e))
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false);
+        setIsSubmitting(true)
+      });
   };
 
   const handleAuthorize = (data) => {
     setIsLoading(true);
+    setIsSubmitting(false)
     authorize(data)
       .then((data) => {
         if (data.token) {
           setIsLoggedIn(true);
-          setCurrentUser( data.user );
+          setCurrentUser(data.user);
           navigate("/movies", { replace: true });
         }
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
-      console.log('handleAuthorize', isLoggedIn )
+      .finally(() => {
+        setIsLoading(false)
+        setIsSubmitting(true)
+      })
+    console.log("handleAuthorize", isLoggedIn);
   };
 
   const handleUsersUpdate = (userData) => {
     setIsLoading(true);
+    setIsSubmitting(false)
     setUserInfoApi(userData, token)
       .then((profile) => {
         setCurrentUser({
@@ -117,7 +127,10 @@ function App() {
         setIsProfileSaved(true);
       })
       .catch((e) => setIsProfileSaved(false))
-      .finally(() => setIsLoading(false));
+      .finally(() => {
+        setIsLoading(false)
+        setIsSubmitting(true)
+      });
   };
 
   function handleLogOut() {
@@ -125,16 +138,16 @@ function App() {
     try {
       setCurrentUser({});
       localStorage.clear();
-      navigate("/");
     } catch (err) {
       console.log(err);
     } finally {
       setIsLoggedIn(false);
       setIsLoading(false);
-    console.log('isLoggedIn outt: ', isLoggedIn);
+      navigate("/", {replace: true});
+      setIsSubmitting(false)
+      console.log("isLoggedIn outt: ", isLoggedIn);
     }
   }
-  
 
   const handleSaveMovie = (movie) => {
     const isSavedMovie = savedMovies.some(
@@ -188,10 +201,9 @@ function App() {
     <CurrentUserContext.Provider value={currentUser}>
       <div className="app">
         <>
+          {/* {isLoading ? ():} */}
           <Routes>
-            <Route
-              path="/"
-              element={<Main isLoggedIn={isLoggedIn}/>} />
+            <Route path="/" element={<Main isLoggedIn={isLoggedIn} />} />
             <Route
               path="/movies"
               element={
@@ -229,12 +241,16 @@ function App() {
                   handleLogOut={handleLogOut}
                   handleUsersUpdate={handleUsersUpdate}
                   isProfileSaved={isProfileSaved}
+                  isSubmitting={isSubmitting}
                 />
               }
             />
             <Route
               path="/signup"
-              element={<Register handleRegister={handleRegister} />}
+              element={<Register
+                handleRegister={handleRegister}
+                isSubmitting={isSubmitting}
+              />}
             />
             <Route
               path="/signin"
@@ -242,6 +258,7 @@ function App() {
                 <Login
                   handleAuthorize={handleAuthorize}
                   isLoading={isLoading}
+                  isSubmitting={isSubmitting}
                 />
               }
             />

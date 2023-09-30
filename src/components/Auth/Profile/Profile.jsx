@@ -8,8 +8,9 @@ import Header from "../../Header/Header";
 import { useFormValidate } from "../../../hooks/useFormValidate";
 import { VALIDATION } from "../../../utils/constants"
 
-const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
+const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved, isSubmitting }) => {
   const currentUser = useContext(CurrentUserContext);
+  // const [isUpdateSuccess, setIsUpdateSuccess] = useState('');
   const { values, setValues, handleChange, isValid, errors } =
     useFormValidate();
 
@@ -102,7 +103,7 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
                 (currentUser.name === values.name &&
                   currentUser.email === values.email) ||
                 !VALIDATION.email.message ||
-                !VALIDATION.name.message
+                !VALIDATION.name.message || !isSubmitting
               }
               onSubmit={handleUsersUpdate}
             >
@@ -110,7 +111,7 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved }) => {
             </button>
             <Link
               className="profile__buttons-exit"
-              to="/signin"
+              to="/"
               onClick={handleLogOut}
             >
               Выйти из аккаунта

@@ -4,7 +4,7 @@ import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
 import { VALIDATION } from "../../../utils/constants"
 
-const Register = ({ handleRegister }) => {
+const Register = ({ handleRegister, isSubmitting }) => {
   const initialValues = {
     name: '',
     email: '',
@@ -15,7 +15,7 @@ const Register = ({ handleRegister }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegister(values);
-    // console.log(values, errors);
+    // console.log('isSubmitting', isSubmitting);
   };
   
 // const EMAIL_REXP = "[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\\.[a-z]{2,}";
@@ -30,6 +30,7 @@ const Register = ({ handleRegister }) => {
           buttonName="Зарегистрироваться"
           onSubmit={handleSubmit}
           isValid={isValid}
+          isSubmitting={isSubmitting}
         >
           <section className="form__register">
             <div className="form__block">
