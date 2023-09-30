@@ -4,7 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../Movies/MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
 
-const SavedMovies = ({ textButton, savedMovies, handleMovieDelete }) => {
+const SavedMovies = ({ textButton, savedMovies, handleMovieDelete, isLoggedIn }) => {
   const textButtonDelete = "Удалить";
   const [moviesRender, setMoviesRender] = useState(savedMovies);
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(false);
@@ -13,7 +13,7 @@ const SavedMovies = ({ textButton, savedMovies, handleMovieDelete }) => {
   // чекбокс для короткометражных фильмов
   const handleCheckBoxClick = () => {
     setIsCheckBoxActive(!isCheckBoxActive);
-    console.log(isCheckBoxActive);
+    // console.log(isCheckBoxActive);
   };
 
   // запрос на поиск фильма
@@ -21,22 +21,24 @@ const SavedMovies = ({ textButton, savedMovies, handleMovieDelete }) => {
     setWordFind(text);
   };
 
-  useEffect(() => {
-    localStorage.setItem("checkBox", isCheckBoxActive);
-  }, [isCheckBoxActive]);
+  // useEffect(() => {
+  //   localStorage.setItem("checkBox", isCheckBoxActive);
+  // }, [isCheckBoxActive]);
 
   useEffect(() => {
     setMoviesRender(checkFindMovies(savedMovies, wordFind, isCheckBoxActive));
     // console.log('setMoviesRender', savedMovies)
   }, [isCheckBoxActive, wordFind, savedMovies]);
 
-  useEffect(() => {
-    localStorage.setItem("wordFind", wordFind);
-  }, [wordFind]);
+  // useEffect(() => {
+  //   localStorage.setItem("wordFind", wordFind);
+  // }, [wordFind]);
 
   return (
     <main>
-      <Header />
+      <Header 
+        isLoggedIn={isLoggedIn}
+      />
       <section className="movies">
         <SearchForm
           wordFind={wordFind}

@@ -6,10 +6,12 @@ import Student from './Student/Student';
 import Tech from './Tech/Tech';
 import Portfolio from './Portfolio/Portfolio';
 
-const Main = () => {
+const Main = ({isLoggedIn}) => {
   return (
     <main>
-      <Header />
+      <Header
+        isLoggedIn={isLoggedIn}
+      />
       <Hero />
       <AboutMe />
       <Tech />

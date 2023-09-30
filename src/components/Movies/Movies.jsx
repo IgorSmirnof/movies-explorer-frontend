@@ -12,6 +12,7 @@ const Movies = ({
   savedMovies,
   handleSaveMovie,
   handleMovieDelete,
+  isLoggedIn,
 }) => {
 
 
@@ -26,10 +27,27 @@ const Movies = ({
     const userWordFind = localStorage.getItem("wordFind");
     return userWordFind ? userWordFind : "";
   };
+ 
+  // изв из ЛС фильтрованные фильмы
+  const checkCheckededMovies = () => {
+    const checkededMovies = JSON.parse(localStorage.getItem("checkededMovies"));
+    console.log(checkededMovies)
+    return checkededMovies ? checkededMovies : [];
+  };
 
-  const [moviesRender, setMoviesRender] = useState([]);
+  const [moviesRender, setMoviesRender] = useState(checkCheckededMovies());
   const [isCheckBoxActive, setIsCheckBoxActive] = useState(checkBoxStatus());
   const [wordFind, setWordFind] = useState(getWordFind());
+
+  useEffect(() => {
+    checkBoxStatus();
+    getWordFind();
+    checkCheckededMovies();
+  }, []);
+
+
+
+ 
 
   // чекбокс для короткометражных фильмов
   const handleCheckBoxClick = () => {
@@ -46,13 +64,15 @@ const Movies = ({
   }, [isCheckBoxActive]);
 
   useEffect(() => {
-    const srch = checkFindMovies(allMovies, wordFind, isCheckBoxActive);
-    setMoviesRender(srch);
+    const totalFindMovies = checkFindMovies(allMovies, wordFind, isCheckBoxActive);
+    setMoviesRender(totalFindMovies);
   }, [isCheckBoxActive, wordFind, allMovies, savedMovies]);
 
   useEffect(() => {
-    const srch = checkFindMovies(allMovies, wordFind, isCheckBoxActive);
-    setMoviesRender(srch);
+    const totalFindMovies = checkFindMovies(allMovies, wordFind, isCheckBoxActive);
+    setMoviesRender(totalFindMovies);
+    // localStorage.setItem("checkBox", (false));
+    // localStorage.setItem("wordFind", JSON.stringify(''));
     //eslint-disable-next-line
   }, []);
 
@@ -74,12 +94,14 @@ const Movies = ({
 
   return (
     <main>
-      <Header />
+      <Header
+        isLoggedIn={isLoggedIn} />
       <section className="movies">
         <SearchForm
           wordFind={wordFind}
           handleCheckBoxClick={handleCheckBoxClick}
-          isCheckBoxActive
+          isCheckBoxActive={isCheckBoxActive}
+          setIsCheckBoxActive={setIsCheckBoxActive}
           handleMoviesSearch={handleMoviesSearch}
           moviesRender={moviesRender}
           // handleToRender={handleToRender}
@@ -117,6 +139,12 @@ function checkFindMovies(movies, wordFind, isCheckBoxActive) {
     checkededMovies = checkededMovies.filter((item) => item.duration <= 40); //короткометраж
   }
 
+  if (wordFind !== "" ) { 
+    localStorage.setItem("checkededMovies", JSON.stringify(checkededMovies));
+  } else {
+    // localStorage.setItem("checkededMovies", JSON.stringify(''));
+    console.log('localStorage.setItem --- ', wordFind);
+  }
   return checkededMovies;
 }
 

@@ -103,6 +103,7 @@ function App() {
       })
       .catch((err) => console.log(err))
       .finally(() => setIsLoading(false));
+      console.log('handleAuthorize', isLoggedIn )
   };
 
   const handleUsersUpdate = (userData) => {
@@ -188,7 +189,9 @@ function App() {
       <div className="app">
         <>
           <Routes>
-            <Route path="/" element={<Main />} />
+            <Route
+              path="/"
+              element={<Main isLoggedIn={isLoggedIn}/>} />
             <Route
               path="/movies"
               element={

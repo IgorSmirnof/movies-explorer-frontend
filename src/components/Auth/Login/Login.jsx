@@ -2,9 +2,15 @@ import  React from "react";
 import "./Login.css";
 import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
+import { VALIDATION } from "../../../utils/constants"
 
 const Login = ({ handleAuthorize }) => {
-    const { values, isValid, errors, handleChange } = useFormValidate();
+  const initialValues = {
+    name: '',
+    email: '',
+    password: '',
+  };
+  const { values, isValid, errors, handleChange } = useFormValidate(initialValues);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,11 +45,12 @@ const Login = ({ handleAuthorize }) => {
                 className="form__input"
                 id="email"
                 name="email"
-                type="email"
+                type="text"
                 placeholder="Введите e-mail"
-                value={values.email} 
+                value={values.email || ''} 
                 onChange={handleChange}
                 required
+                pattern={VALIDATION.email.pattern}
               />
               <span
                 className={`form__error ${
@@ -66,7 +73,7 @@ const Login = ({ handleAuthorize }) => {
                 name="password"
                 type="password"
                 placeholder="Введите пароль"
-                value={values.password} 
+                value={values.password || ''} 
                 onChange={handleChange}
                 required
                 minLength="6"

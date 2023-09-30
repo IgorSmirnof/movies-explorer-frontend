@@ -52,11 +52,16 @@ const NavAuth = () => {
           </Link>
         </li>
 
-        <li className="header__login">
+        {/* <li className="header__login">
           <Link className="header__link header__profile" to="/profile">
             Аккаунт
           </Link>
-        </li>
+        </li> */}
+        <Link className="header__login" to="/profile">
+          <div className="header__link header__profile">
+            Аккаунт
+          </div>
+        </Link>
       </ul>
     </main>
   );
