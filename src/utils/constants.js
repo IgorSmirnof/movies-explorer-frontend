@@ -15,5 +15,20 @@ const VALIDATION = {
     message: 'Некорректный email.',
   },
 };
-module.exports = {API_MOVIE_URL, API_MY_URL, EMAIL_REXP, NAME_REXP, VALIDATION };
+
+
+const SCREEN_LG = 1280;
+const SCREEN_MD = 767;
+
+const IN_MOVIE_LG = 12;
+const IN_MOVIE_MD = 8;
+const IN_MOVIE_SM = 5;
+
+const ADD_MOVIE_LG = 3;
+const ADD_MOVIE_MD = 2;
+const ADD_MOVIE_SM = 2;
+
+const DUR_SHORT_FILM = 40;
+
+module.exports = {API_MOVIE_URL, API_MY_URL, EMAIL_REXP, NAME_REXP, VALIDATION, SCREEN_LG, SCREEN_MD, IN_MOVIE_LG, IN_MOVIE_MD, IN_MOVIE_SM, ADD_MOVIE_LG, ADD_MOVIE_MD, ADD_MOVIE_SM, DUR_SHORT_FILM };
 // module.exports = {API_MOVIE_URL, API_MY_URL, VALIDATION };

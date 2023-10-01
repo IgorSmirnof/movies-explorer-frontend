@@ -2,6 +2,7 @@ import { React, useState, useEffect } from "react";
 import "./MoviesCardList.css";
 import MoviesCard from "../Movies/MoviesCard/MoviesCard";
 import { useLocation } from "react-router-dom";
+import {SCREEN_LG, SCREEN_MD, IN_MOVIE_LG, IN_MOVIE_MD, IN_MOVIE_SM, ADD_MOVIE_LG, ADD_MOVIE_MD, ADD_MOVIE_SM} from '../../utils/constants'
 
 const MoviesCardList = ({ textButton, moviesRender, handleClick }) => {
   const location = useLocation();
@@ -14,15 +15,15 @@ const MoviesCardList = ({ textButton, moviesRender, handleClick }) => {
   const checkWidth = () => {
     const screenWidth = window.innerWidth;
 
-    if (screenWidth >= 1280) {
-      setMoviesPerPage(12);
-      setMoviesAddToPage(3);
-    } else if (screenWidth < 1280 && screenWidth > 767) {
-      setMoviesPerPage(8);
-      setMoviesAddToPage(2);
+    if (screenWidth >= SCREEN_LG) {
+      setMoviesPerPage(IN_MOVIE_LG);
+      setMoviesAddToPage(ADD_MOVIE_LG);
+    } else if (screenWidth < SCREEN_LG && screenWidth > SCREEN_MD) {
+      setMoviesPerPage(IN_MOVIE_MD);
+      setMoviesAddToPage(ADD_MOVIE_MD);
     } else {
-      setMoviesPerPage(5);
-      setMoviesAddToPage(2);
+      setMoviesPerPage(IN_MOVIE_SM);
+      setMoviesAddToPage(ADD_MOVIE_SM);
     }
   };
 

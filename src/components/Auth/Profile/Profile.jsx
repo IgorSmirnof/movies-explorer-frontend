@@ -8,13 +8,17 @@ import Header from "../../Header/Header";
 import { useFormValidate } from "../../../hooks/useFormValidate";
 import { VALIDATION } from "../../../utils/constants"
 
-const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved, isSubmitting }) => {
+const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved, setIsProfileSaved }) => {
   const currentUser = useContext(CurrentUserContext);
   // const [isUpdateSuccess, setIsUpdateSuccess] = useState('');
   const { values, setValues, handleChange, isValid, errors } =
     useFormValidate();
 
-  // console.log("Profile currentUser", currentUser)
+
+  useEffect(() => {
+    setIsProfileSaved(false)
+    //eslint-disable-next-line
+  }, []);
 
   useEffect(() => {
     setValues({ name: currentUser.name, email: currentUser.email });
@@ -25,7 +29,7 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved, isSubmitting
     handleUsersUpdate(values);
   };
 
-  return (
+   return (
     <main>
       <section className="profile">
         <Header />
@@ -100,11 +104,9 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved, isSubmitting
               form="profile__form"
               disabled={
                 !isValid ||
-                (currentUser.name === values.name &&
-                  currentUser.email === values.email) ||
-                !VALIDATION.email.message ||
-                !VALIDATION.name.message || !isSubmitting
-              }
+                (currentUser.name === values.name && currentUser.email === values.email)
+                || !VALIDATION.email.message || !VALIDATION.name.message 
+              } // || !isSubmitting
               onSubmit={handleUsersUpdate}
             >
               Редактировать

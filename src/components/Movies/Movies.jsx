@@ -4,6 +4,7 @@ import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import Preloader from "../Preloader/Preloader";
 import "./Movies.css";
+import {DUR_SHORT_FILM} from '../../utils/constants'
 
 const Movies = ({
   textButton,
@@ -136,7 +137,7 @@ function checkFindMovies(movies, wordFind, isCheckBoxActive) {
   }
 
   if (isCheckBoxActive) {
-    checkededMovies = checkededMovies.filter((item) => item.duration <= 40); //короткометраж
+    checkededMovies = checkededMovies.filter((item) => item.duration <= DUR_SHORT_FILM); //короткометраж
   }
 
   if (wordFind !== "" ) { 

@@ -3,6 +3,7 @@ import Header from "../Header/Header";
 import SearchForm from "../SearchForm/SearchForm";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import "./SavedMovies.css";
+import {DUR_SHORT_FILM} from '../../utils/constants'
 
 const SavedMovies = ({ textButton, savedMovies, handleMovieDelete, isLoggedIn }) => {
   const textButtonDelete = "Удалить";
@@ -71,7 +72,7 @@ function checkFindMovies(movies, wordFind, isCheckBoxActive) {
   }
 
   if (isCheckBoxActive) {
-    checkededMovies = checkededMovies.filter((movie) => movie.duration <= 40); //короткометраж
+    checkededMovies = checkededMovies.filter((movie) => movie.duration <= DUR_SHORT_FILM); //короткометраж
   }
 
   return checkededMovies;

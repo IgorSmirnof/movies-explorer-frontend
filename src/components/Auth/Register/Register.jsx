@@ -15,10 +15,8 @@ const Register = ({ handleRegister, isSubmitting }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleRegister(values);
-    // console.log('isSubmitting', isSubmitting);
   };
   
-// const EMAIL_REXP = "[a-zA-Z0-9_.]+@[a-zA-Z0-9_]+\\.[a-z]{2,}";
   return (
     <main>
       <section className="register">

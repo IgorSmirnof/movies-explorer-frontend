@@ -12,6 +12,7 @@ export function getUserInfoApi(token) {
 }
 
 export function setUserInfoApi({ name, email }, token) {
+  console.log({ name, email }, token)
   return fetch(`${API_MY_URL}/users/me`, {
     method: "PATCH",
     headers: {

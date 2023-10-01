@@ -19,7 +19,7 @@ const Form = ({ title, linkText, link, linkName, buttonName, children, onSubmit,
         <button
           className={`form__button ${!isValid && 'form__button_disabled'}`}
           type="submit" 
-          disabled={!isValid || isSubmitting }>
+          disabled={!isValid || isSubmitting}>
           {buttonName}
         </button>
         <span className="form__text">

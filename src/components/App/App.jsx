@@ -82,7 +82,7 @@ function App() {
 
   const handleRegister = (data) => {
     setIsLoading(true);
-    setIsSubmitting(false)
+    setIsSubmitting(true)
     register(data)
       .then((res) => {
         if (res.name || res.email) {
@@ -92,13 +92,13 @@ function App() {
       .catch((e) => console.log(e))
       .finally(() => {
         setIsLoading(false);
-        setIsSubmitting(true)
+        setIsSubmitting(false)
       });
   };
 
   const handleAuthorize = (data) => {
     setIsLoading(true);
-    setIsSubmitting(false)
+    setIsSubmitting(true)
     authorize(data)
       .then((data) => {
         if (data.token) {
@@ -110,14 +110,15 @@ function App() {
       .catch((err) => console.log(err))
       .finally(() => {
         setIsLoading(false)
-        setIsSubmitting(true)
+        setIsSubmitting(false)
       })
     console.log("handleAuthorize", isLoggedIn);
   };
 
+
   const handleUsersUpdate = (userData) => {
     setIsLoading(true);
-    setIsSubmitting(false)
+    setIsSubmitting(true)
     setUserInfoApi(userData, token)
       .then((profile) => {
         setCurrentUser({
@@ -129,7 +130,7 @@ function App() {
       .catch((e) => setIsProfileSaved(false))
       .finally(() => {
         setIsLoading(false)
-        setIsSubmitting(true)
+        setIsSubmitting(false)
       });
   };
 
@@ -241,6 +242,7 @@ function App() {
                   handleLogOut={handleLogOut}
                   handleUsersUpdate={handleUsersUpdate}
                   isProfileSaved={isProfileSaved}
+                  setIsProfileSaved={setIsProfileSaved}
                   isSubmitting={isSubmitting}
                 />
               }

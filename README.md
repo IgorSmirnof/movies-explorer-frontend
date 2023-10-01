@@ -10,5 +10,6 @@
 [**link на деплой**](https://smirnov.nomoreparties.co/)
 
 ### IP yandex cloud
+158.160.124.239 --- current IP
 84.252.130.140
 158.160.108.139

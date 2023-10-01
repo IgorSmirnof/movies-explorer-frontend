@@ -4,7 +4,6 @@ import { useState } from "react";
 import "./NavAuth.css";
 import logo from "../../images/logo.svg";
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
-// import Burger from "../BurgerMenu/Burger";
 
 const NavAuth = () => {
   const [isOpen, setIsOpen] = useState(false);
