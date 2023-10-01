@@ -22,6 +22,7 @@ import {
   saveMovie,
   deleteMovie,
 } from "../../utils/MainApi";
+import hanldeErrors from '../../utils/hanldeErrors'
 
 function App() {
   let navigate = useNavigate();
@@ -80,6 +81,7 @@ function App() {
     localStorage.setItem("allMovies", JSON.stringify(allMovies));
   }, [savedMovies, allMovies]);
 
+  const [errorRegister, setErrorRegister] = useState('');
   const handleRegister = (data) => {
     setIsLoading(true);
     setIsSubmitting(true)
@@ -89,7 +91,10 @@ function App() {
           handleAuthorize(data);
         }
       })
-      .catch((e) => console.log(e))
+      .catch((e) => {
+        hanldeErrors(e, setErrorRegister);
+        console.log(e)
+      })
       .finally(() => {
         setIsLoading(false);
         setIsSubmitting(false)
@@ -252,6 +257,8 @@ function App() {
               element={<Register
                 handleRegister={handleRegister}
                 isSubmitting={isSubmitting}
+                errorRegister={errorRegister}
+                setErrorRegister={setErrorRegister}
               />}
             />
             <Route

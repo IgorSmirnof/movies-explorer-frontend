@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import "./Register.css";
 import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
 import { VALIDATION } from "../../../utils/constants"
 
-const Register = ({ handleRegister, isSubmitting }) => {
+const Register = ({ handleRegister, isSubmitting, errorRegister,setErrorRegister }) => {
+  // console.log('ghfjhfjhfj', errorRegister);
   const initialValues = {
     name: '',
     email: '',
@@ -16,6 +17,9 @@ const Register = ({ handleRegister, isSubmitting }) => {
     e.preventDefault();
     handleRegister(values);
   };
+  
+  //eslint-disable-next-line
+  useEffect(() => {setErrorRegister('') },[values.email])
   
   return (
     <main>
@@ -74,10 +78,10 @@ const Register = ({ handleRegister, isSubmitting }) => {
               />
               <span
                 className={`form__error ${
-                  errors.email && "form__error_register"
+                  (errors.email || errorRegister) && "form__error_register"
                 }`}
               >
-                {errors.email}
+                {errors.email} {errorRegister}
               </span>
             </div>
 
