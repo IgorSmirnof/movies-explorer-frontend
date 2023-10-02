@@ -40,10 +40,10 @@
   transition: 0.5s;
 }
 
-/* .notFound__button:hover {
+.notFound__button:hover {
   cursor: pointer;
   opacity: 0.8;
-} */
+}
 @media (max-width: 800px) {
   .notFound__title {
     padding-top: 408px;

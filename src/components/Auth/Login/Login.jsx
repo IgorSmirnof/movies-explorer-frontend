@@ -1,10 +1,11 @@
-import  React from "react";
+import React from "react";
+import { Navigate } from 'react-router-dom';
 import "./Login.css";
 import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
 import { VALIDATION } from "../../../utils/constants"
 
-const Login = ({ handleAuthorize, isSubmitting }) => {
+const Login = ({ handleAuthorize, isSubmitting, isLoggedIn }) => {
   const initialValues = {
     name: '',
     email: '',
@@ -25,6 +26,10 @@ const Login = ({ handleAuthorize, isSubmitting }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
     handleAuthorize(values);
+  }
+
+  if (isLoggedIn) {
+    return <Navigate to="/movies" />;
   }
 
   return (

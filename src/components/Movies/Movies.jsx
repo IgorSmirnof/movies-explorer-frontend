@@ -20,12 +20,14 @@ const Movies = ({
   // изв из ЛС статус кмф
   const checkBoxStatus = () => {
     const userCheckBoxStatus = JSON.parse(localStorage.getItem("checkBox"));
+    console.log('checkBoxStatus inn', userCheckBoxStatus)
     return userCheckBoxStatus ? userCheckBoxStatus : false;
   };
 
   // изв из ЛС слово запроса
   const getWordFind = () => {
     const userWordFind = localStorage.getItem("wordFind");
+    console.log('userWordFind inn', userWordFind)
     return userWordFind ? userWordFind : "";
   };
  
@@ -41,6 +43,8 @@ const Movies = ({
   const [wordFind, setWordFind] = useState(getWordFind());
 
   useEffect(() => {
+    // setIsCheckBoxActive(false);
+    setWordFind('');
     checkBoxStatus();
     getWordFind();
     checkCheckededMovies();

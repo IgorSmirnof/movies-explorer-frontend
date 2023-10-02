@@ -2,9 +2,10 @@ import React, { useEffect } from "react";
 import "./Register.css";
 import Form from "../Form/Form";
 import { useFormValidate } from "../../../hooks/useFormValidate";
+import { Navigate } from 'react-router-dom';
 import { VALIDATION } from "../../../utils/constants"
 
-const Register = ({ handleRegister, isSubmitting, errorRegister,setErrorRegister }) => {
+const Register = ({ handleRegister, isSubmitting, errorRegister,setErrorRegister, isLoggedIn }) => {
   // console.log('ghfjhfjhfj', errorRegister);
   const initialValues = {
     name: '',
@@ -21,6 +22,10 @@ const Register = ({ handleRegister, isSubmitting, errorRegister,setErrorRegister
   //eslint-disable-next-line
   useEffect(() => {setErrorRegister('') },[values.email])
   
+  if (isLoggedIn) {
+    return <Navigate to="/movies" />;
+  }
+
   return (
     <main>
       <section className="register">

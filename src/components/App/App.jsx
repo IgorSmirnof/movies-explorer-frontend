@@ -259,6 +259,7 @@ function App() {
                 isSubmitting={isSubmitting}
                 errorRegister={errorRegister}
                 setErrorRegister={setErrorRegister}
+                isLoggedIn={isLoggedIn}
               />}
             />
             <Route
@@ -268,6 +269,7 @@ function App() {
                   handleAuthorize={handleAuthorize}
                   isLoading={isLoading}
                   isSubmitting={isSubmitting}
+                  isLoggedIn={isLoggedIn}
                 />
               }
             />

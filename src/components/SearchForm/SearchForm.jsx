@@ -1,5 +1,5 @@
 import React from "react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLocation } from "react-router-dom";
 import "./SearchForm.css";
 
@@ -11,7 +11,7 @@ const SearchForm = ({
   setIsCheckBoxActive,
   moviesRender,
 }) => {
-  const [shortFilm, setShortFilm] = useState(false);
+  // const [shortFilm, setShortFilm] = useState(false);
   const searchBtn = document.querySelector(".form__search-button");
   const [textSearch, setTextSearch] = useState(wordFind);
   const [isSpanActive, setIsSpanActive] = useState(false);
@@ -22,6 +22,12 @@ const SearchForm = ({
   //   const userCheckBoxStatus = JSON.parse(localStorage.getItem("checkBox"));
   //   return userCheckBoxStatus ? userCheckBoxStatus : false;
   // };
+    useEffect(() => {
+      if (location.pathname === "/saved-movies") {
+        setIsCheckBoxActive(false)
+      }
+      //eslint-disable-next-line
+  }, []);
 
   const handleFormSubmit = (e) => {
     e.preventDefault();
@@ -48,6 +54,9 @@ const SearchForm = ({
     // const newIsChecked = !isCheckBoxActive;
     // setIsCheckBoxActive(newIsChecked);
   };
+
+
+  console.log(isCheckBoxActive);
 
   return (
     <section className="search__form">
@@ -90,9 +99,9 @@ const SearchForm = ({
             type="checkbox"
             id="checkbox"
             className="filter__input"
-            checked={shortFilm}
+            checked={isCheckBoxActive}
             onChange={() => {
-              setShortFilm(!shortFilm);
+              setIsCheckBoxActive(!isCheckBoxActive);
             }}
             onClick={handleCheckBoxClick}
           />

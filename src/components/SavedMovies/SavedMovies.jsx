@@ -44,7 +44,8 @@ const SavedMovies = ({ textButton, savedMovies, handleMovieDelete, isLoggedIn })
         <SearchForm
           wordFind={wordFind}
           handleCheckBoxClick={handleCheckBoxClick}
-          isCheckBoxActive
+          isCheckBoxActive={isCheckBoxActive}
+          setIsCheckBoxActive={setIsCheckBoxActive}
           handleMoviesSearch={handleMoviesSearch}
           moviesRender={moviesRender}
         />

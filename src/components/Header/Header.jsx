@@ -4,7 +4,8 @@ import "./Header.css";
 import NavLanding from "../Navigation/NavLanding";
 import NavAuth from "../Navigation/NavAuth";
 
-const Header = ({ isLoggedIn } ) => {
+const Header = ({ isLoggedIn }) => {
+  // console.log('header isLoggedIn', isLoggedIn)
   if (!isLoggedIn) {
     return (
       <header className="header">

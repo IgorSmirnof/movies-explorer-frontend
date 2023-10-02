@@ -28,10 +28,7 @@ const Profile = ({ handleLogOut, handleUsersUpdate, isProfileSaved, setIsProfile
     e.preventDefault();
     handleUsersUpdate(values);
   };
-const buttonValid = !isValid ||
-(currentUser.name === values.name && currentUser.email === values.email)
-    || !VALIDATION.email.message || !VALIDATION.name.message
-  
+
    return (
     <main>
       <section className="profile">
@@ -101,9 +98,9 @@ const buttonValid = !isValid ||
           </section>
 
            <div className="profile__buttons">
+             <button></button>
             <button
-              // className="profile__buttons-submit"
-           className={`profile__buttons-submit ${!buttonValid && "form__button_profile"}`}
+              className="profile__buttons-submit"
               type="submit"
               form="profile__form"
               disabled={
@@ -112,9 +109,8 @@ const buttonValid = !isValid ||
                 || !VALIDATION.email.message || !VALIDATION.name.message 
               } // || !isSubmitting
               onSubmit={handleUsersUpdate}
-             >
-               {(buttonValid) ? `Редактировать` : `Сохранить`}
-              {/* Редактировать */}
+            >
+              Редактировать
             </button>
             <Link
               className="profile__buttons-exit"
